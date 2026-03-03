@@ -1,0 +1,286 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      -->
+<title>Lab2</title>
+<meta name="generator" content="MATLAB 24.2">
+<link rel="schema.DC" href="http://purl.org/dc/elements/1.1/">
+<meta name="DC.date" content="2026-02-04">
+<meta name="DC.source" content="Lab2.m">
+<style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; }
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+span.typesection { color:#A0522D }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style>
+</head>
+<body>
+<div class="content">
+<pre class="codeinput">
+<span class="comment">% ECE 235</span>
+<span class="comment">%</span>
+<span class="comment">% Lab 2 - Part 2</span>
+<span class="comment">% Sidorian Pandovski</span>
+
+<span class="comment">% Question 3-25</span>
+
+<span class="comment">% The orbitting space shuttle moves around Earth well above 99 percent of</span>
+<span class="comment">% the atmosphere, yet it still accumulates an electric charge on its skin</span>
+<span class="comment">% due, in part, to the loss of electrons caused by the photoelectric</span>
+<span class="comment">% effect with sunlight. Suppose the skinskin of the shuttle is coated with</span>
+<span class="comment">% Ni, which has a relatively large work function of phi = 4.87 eV at the</span>
+<span class="comment">% temperatures encountered in orbit.</span>
+
+<span class="comment">%   a) what is the maximum wavelength in the solar spectrum that can</span>
+<span class="comment">%      result in the emission of photoelectrons from the shuttle's skin?</span>
+<span class="comment">%</span>
+<span class="comment">%   b) what is the maximum fraction of the total power falling on the</span>
+<span class="comment">%      shuttle that could potentially produce photoelectrons</span>
+
+<span class="comment">% a) to be done on paper, checking answer in MATLAB</span>
+
+
+<span class="comment">% defining constants and givens</span>
+
+phi  = 4.87;          <span class="comment">% electron Volts</span>
+c    = 3.000E008;     <span class="comment">% meters/second</span>
+h    = 6.626E-34;     <span class="comment">% Joule seconds</span>
+eV   = 1.602E-19;     <span class="comment">% electron</span>
+K    = 1.380E-23;     <span class="comment">% Joules/Kelvin</span>
+b    = 2.900E-03;     <span class="comment">% meter Kelvin</span>
+
+<span class="comment">% defining parameters</span>
+
+lPeak = (h * c)/(phi * eV);
+T = b/lPeakSun;
+disp([<span class="string">'Lambda Max is: '</span> num2str(lPeak*10^9)]);
+
+    <span class="comment">% The peak wavelength shown is about 254. This is a correct value</span>
+
+<span class="comment">% b) to be done in MATLAB</span>
+<span class="comment">% setting up R(lambda) function</span>
+
+lPeakSun = 500E-09;    <span class="comment">% Did this part in class 1/30/26</span>
+
+<span class="comment">% setting up variables needed</span>
+
+lambda = 1E-9:1E-9:(11*lPeakSun);
+rLam = (2*pi*h*c^2.*lambda.^-5)./(exp((h * c) ./ (lambda .* K * T)) - 1);
+
+<span class="comment">% utilized AI to help format/fit curve</span>
+figure(<span class="string">'Position'</span>,[100 100 1000 600]);
+plot(lambda, rLam, <span class="string">'LineWidth'</span>, 2.5);
+grid <span class="string">on</span>;
+
+set(gca,<span class="string">'XScale'</span>,<span class="string">'linear'</span>,<span class="string">'YScale'</span>,<span class="string">'linear'</span>);  <span class="comment">% explicit linear axes</span>
+
+xlabel(<span class="string">'\lambda (m)'</span>);
+ylabel(<span class="string">'R(\lambda)'</span>);
+title(<span class="string">'Planck Radiation Curve'</span>);
+xline(lPeakSun, <span class="string">'r:'</span>, <span class="string">'LineWidth'</span>, 3.5, <span class="string">'Label'</span>, [<span class="string">'\lambda_{max}  '</span> <span class="keyword">...</span>
+    num2str(lPeakSun*10^9) <span class="string">'nm'</span>], <span class="string">'LabelVerticalAlignment'</span>,<span class="string">'bottom'</span>);
+
+<span class="comment">% setting up Reimann sum of R</span>
+
+<span class="comment">% vector Area:</span>
+<span class="comment">% left hand Reimann sum, where each box has the width of 1nm, and the</span>
+<span class="comment">% height is the left bound of the box</span>
+
+Area = rLam .* 1E-9;
+rS = cumsum(Area); <span class="comment">% -&gt; This is the answer to part III) inserting</span>
+<span class="comment">% rSum(desired wavelength) will return the rough estimate for the power</span>
+<span class="comment">% density at that wavelength</span>
+
+rSum = rS(end)/(T^4) <span class="comment">% -&gt; this value returned 5.63e-08</span>
+<span class="comment">% while this is not perfect, it is only at about 0.75% error. This is</span>
+<span class="comment">% a fairly close approximation given that we are using a reimann sum.</span>
+
+<span class="comment">% now obtaining an accurate integral</span>
+rLamInt = @(x) (2*pi*h*c^2.*x.^-5)./(exp((h * c) ./ (x .* K * T)) - 1);
+rInt = integral(rLamInt, 1E-9, lambda(end)) / (T^4) <span class="comment">% -&gt; this value also</span>
+<span class="comment">% returned 5.63 which is still a fairly close approximation but still off</span>
+<span class="comment">% for some reason.</span>
+
+photoelectric = integral(rLamInt, 1E-9, lPeak);
+total = integral(rLamInt, 1E-9, 11*lPeakSun);
+fraction = photoelectric / total; <span class="comment">% this number is the answer to part B</span>
+<span class="comment">% and was about 0.0115</span>
+</pre>
+<pre class="codeoutput">Lambda Max is: 254.7893
+
+rSum =
+
+   5.6296e-08
+
+
+rInt =
+
+   5.6296e-08
+
+</pre>
+<img vspace="5" hspace="5" src="Lab2_01.png" alt=""> <p class="footer">
+<br>
+<a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2024b</a>
+<br>
+</p>
+</div>
+<!--
+##### SOURCE BEGIN #####
+% ECE 235
+%
+% Lab 2 - Part 2
+% Sidorian Pandovski
+
+% Question 3-25
+
+% The orbitting space shuttle moves around Earth well above 99 percent of
+% the atmosphere, yet it still accumulates an electric charge on its skin
+% due, in part, to the loss of electrons caused by the photoelectric 
+% effect with sunlight. Suppose the skinskin of the shuttle is coated with 
+% Ni, which has a relatively large work function of phi = 4.87 eV at the 
+% temperatures encountered in orbit. 
+
+%   a) what is the maximum wavelength in the solar spectrum that can        
+%      result in the emission of photoelectrons from the shuttle's skin?
+%
+%   b) what is the maximum fraction of the total power falling on the
+%      shuttle that could potentially produce photoelectrons
+
+% a) to be done on paper, checking answer in MATLAB
+
+
+% defining constants and givens
+
+phi  = 4.87;          % electron Volts
+c    = 3.000E008;     % meters/second
+h    = 6.626E-34;     % Joule seconds
+eV   = 1.602E-19;     % electron
+K    = 1.380E-23;     % Joules/Kelvin
+b    = 2.900E-03;     % meter Kelvin
+
+% defining parameters
+
+lPeak = (h * c)/(phi * eV);
+T = b/lPeakSun;
+disp(['Lambda Max is: ' num2str(lPeak*10^9)]);
+    
+    % The peak wavelength shown is about 254. This is a correct value
+
+% b) to be done in MATLAB
+% setting up R(lambda) function
+
+lPeakSun = 500E-09;    % Did this part in class 1/30/26
+
+% setting up variables needed
+
+lambda = 1E-9:1E-9:(11*lPeakSun);
+rLam = (2*pi*h*c^2.*lambda.^-5)./(exp((h * c) ./ (lambda .* K * T)) - 1);
+
+% utilized AI to help format/fit curve
+figure('Position',[100 100 1000 600]);
+plot(lambda, rLam, 'LineWidth', 2.5);
+grid on;
+
+set(gca,'XScale','linear','YScale','linear');  % explicit linear axes
+
+xlabel('\lambda (m)');
+ylabel('R(\lambda)');
+title('Planck Radiation Curve');
+xline(lPeakSun, 'r:', 'LineWidth', 3.5, 'Label', ['\lambda_{max}  ' ...
+    num2str(lPeakSun*10^9) 'nm'], 'LabelVerticalAlignment','bottom');
+
+% setting up Reimann sum of R
+
+% vector Area:
+% left hand Reimann sum, where each box has the width of 1nm, and the
+% height is the left bound of the box
+
+Area = rLam .* 1E-9;
+rS = cumsum(Area); % -> This is the answer to part III) inserting 
+% rSum(desired wavelength) will return the rough estimate for the power
+% density at that wavelength
+
+rSum = rS(end)/(T^4) % -> this value returned 5.63e-08
+% while this is not perfect, it is only at about 0.75% error. This is
+% a fairly close approximation given that we are using a reimann sum.
+
+% now obtaining an accurate integral
+rLamInt = @(x) (2*pi*h*c^2.*x.^-5)./(exp((h * c) ./ (x .* K * T)) - 1);
+rInt = integral(rLamInt, 1E-9, lambda(end)) / (T^4) % -> this value also
+% returned 5.63 which is still a fairly close approximation but still off
+% for some reason.
+
+photoelectric = integral(rLamInt, 1E-9, lPeak); 
+total = integral(rLamInt, 1E-9, 11*lPeakSun);
+fraction = photoelectric / total; % this number is the answer to part B 
+% and was about 0.0115
+
+
+
+
+
+
+##### SOURCE END #####
+-->
+</body>
+</html>
