@@ -1,0 +1,15 @@
+# Ignore everything by default
+*
+
+# Allow Homework folders (and their contents)
+!Homework*/
+!Homework*/**
+
+# Allow PDFs with "Pandovski" in the name
+!*Pandovski*.pdf
+
+# Allow Lab#.m files (anywhere in the tree)
+!Lab[0-9]*.m
+
+# Always allow .gitignore itself
+!.gitignore
